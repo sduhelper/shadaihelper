@@ -2,15 +2,12 @@ package com.shadai.shadaiHelper;
 
 import static android.content.ContentValues.TAG;
 
-import static com.google.android.material.internal.ContextUtils.getActivity;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
 import android.provider.DocumentsContract;
@@ -26,7 +23,6 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import net.fortuna.ical4j.data.CalendarOutputter;
@@ -47,27 +43,24 @@ import net.fortuna.ical4j.util.RandomUidGenerator;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int syear = 2023;
-    private static final int smonth = 2;
-    private static final int sday = 13;
-    private static final int maxWeekNum = 18;
+    private  int syear = 2023;
+    private int smonth = 2;
+    private int sday = 13;
+    private int maxWeekNum = 18;
     private Uri xlsUri;
     ActivityResultLauncher<Intent> fileReturn = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<>() {
         @Override
@@ -90,13 +83,24 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        getDateWeekNum();
         Button choose = findViewById(R.id.choose);
         choose.setOnClickListener(new ChooseButton());
         Button parse = findViewById(R.id.parse);
         parse.setOnClickListener(new ParseButton());
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) Button save = findViewById(R.id.save_button);
         save.setOnClickListener(new SaveButton());
+    }
+
+    private void getDateWeekNum () {
+        setContentView(R.layout.activity_main);
+        TextView date = findViewById(R.id.editTextDate);
+        String[] date_info = date.getText().toString().split("/");
+        syear = Integer.parseInt(date_info[0]);
+        smonth = Integer.parseInt(date_info[1]);
+        sday = Integer.parseInt(date_info[2]);
+        TextView maxWeek = findViewById(R.id.editTextNumber);
+        maxWeekNum = Integer.parseInt(maxWeek.getText().toString());
     }
 
     public String getCell(@NonNull HSSFSheet sheet, int column, int row) {
@@ -426,6 +430,7 @@ public class MainActivity extends AppCompatActivity {
     class ChooseButton implements View.OnClickListener {
         @Override
         public void onClick(View v) {
+            getDateWeekNum();
             Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
             intent.setType("application/vnd.ms-excel");
             intent.addCategory(Intent.CATEGORY_OPENABLE);
