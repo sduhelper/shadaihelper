@@ -261,9 +261,9 @@ public class MainActivity extends AppCompatActivity {
             pfd.close();
             Toast.makeText(MainActivity.this, "Save Success! Find file at: "+xlsUri, Toast.LENGTH_SHORT).show();
         } catch (java.lang.SecurityException e) {
-            Toast.makeText(MainActivity.this, "Please select path again: "+e.toString(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "Please select path again: "+ e, Toast.LENGTH_SHORT).show();
         } catch (java.lang.NullPointerException err) {
-            Toast.makeText(MainActivity.this, "Please click CHOOSE to choose file again: "+err.toString(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "Please click CHOOSE to choose file again: "+ err, Toast.LENGTH_SHORT).show();
         }
     }
 
