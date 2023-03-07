@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/study"
+        android:icon="@drawable/baseline_menu_book_24"
+        android:title="Study"></item>
+    <item
+        android:id="@+id/life"
+        android:icon="@drawable/baseline_nightlife_24"
+        android:title="Life"></item>
+    <item
+        android:id="@+id/about"
+        android:icon="@drawable/baseline_feedback_24"
+        android:title="About"></item>
+</menu>

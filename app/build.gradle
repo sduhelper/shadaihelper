@@ -11,7 +11,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.shadai.shadaiHelper"
+        applicationId "com.shadai.shadaihelper"
         minSdk 28
         targetSdk 33
         versionCode 1
@@ -33,6 +33,7 @@ android {
 }
 
 dependencies {
+    implementation "com.google.android.material:material:1.8.0"
     // https://mvnrepository.com/artifact/org.mnode.ical4j/ical4j
     implementation 'org.mnode.ical4j:ical4j:3.2.9'
     implementation 'androidx.appcompat:appcompat:1.6.1'

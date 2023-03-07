@@ -1,4 +1,8 @@
 <resources>
-    <string name="app_name">shadaiHelper</string>
+    <string name="app_name">shadaihelper</string>
     <string name="choose">CHOOSE</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="study_fragment_init">study</string>
+    <string name="life_fragment_init">life</string>
+    <string name="about_fragment_init">About shadaihelper</string>
 </resources>
